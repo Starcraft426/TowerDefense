@@ -83,7 +83,7 @@ class Updater:
                         except:
                             print(f"file not found at {b[3]}")
                 print(f"Finished to update to {self.versions_to_update[a]}")
-            r_file = requests.get(f"https://raw.githubusercontent.com/Starcraft426/TowerDefense/main/autoload.py?raw=true")
+            r_file = requests.get(f"https://raw.githubusercontent.com/Starcraft426/TowerDefense/main/autoupdate.py?raw=true")
             filecontent = r_file.text
             if not filecontent == "404: Not Found":
                 file = open("autoupdate.py", "w")
