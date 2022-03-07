@@ -87,7 +87,7 @@ class Updater:
             filecontent = r_file.text
             if not filecontent == "404: Not Found":
                 file = open("autoupdate.py", "w")
-                file.write(filecontent)
+                file.writelines(filecontent)
                 file.close()
         else:
             print("The game is up to date")
