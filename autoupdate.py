@@ -91,3 +91,6 @@ class Updater:
                 file.close()
         else:
             print("The game is up to date")
+            
+if __name__ == "__main__":
+    Updater()
