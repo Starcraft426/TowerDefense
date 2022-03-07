@@ -21,3 +21,11 @@ pip install pyscroll
 ```
 pip install requests
 ```
+
+## If you have an older version than v1.2-beta
+
+Just get the autoupdate.py file, modify the current_version to 
+```
+self.current_version = "v1.1-beta"
+```
+and run the file
