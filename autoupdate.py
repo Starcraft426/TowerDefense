@@ -55,7 +55,7 @@ class Updater:
                                         os.makedirs(path)
                                     os.chdir(path)
                             file = open(b[1], "w+")
-                            file.write(filecontent.split("\n"))
+                            file.writelines(filecontent.split("\n"))
                             file.close()
                             os.chdir("." * len(b[3].split("/")) + "/")
                     elif b[0] == "MODIFY":
@@ -73,7 +73,7 @@ class Updater:
                                 if len(b) > 2:
                                     os.chdir(b[3])
                                     file = open(b[1], "w")
-                                    file.write(filecontent)
+                                    file.writelines(filecontent.split("\n"))
                                     file.close()
                             except:
                                 print(f"An error as occurred modifying {b[1]} at {b[3]}")
