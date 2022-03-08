@@ -55,7 +55,7 @@ class Updater:
                                         os.makedirs(path)
                                     os.chdir(path)
                             file = open(b[1], "w+")
-                            file.write(filecontent)
+                            file.write(filecontent.split("\n"))
                             file.close()
                             os.chdir("." * len(b[3].split("/")) + "/")
                     elif b[0] == "MODIFY":
@@ -87,7 +87,7 @@ class Updater:
             filecontent = r_file.text
             if not filecontent == "404: Not Found":
                 file = open("autoupdate.py", "w")
-                file.writelines(filecontent)
+                file.writelines(filecontent.split("\n"))
                 file.close()
         else:
             print("The game is up to date")
