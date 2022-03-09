@@ -4,7 +4,7 @@ import os
 
 class Updater:
     def __init__(self):
-        self.current_version = "v1.1-beta"
+        self.current_version = "v1.2-beta"
         print("")
         r = requests.get("https://github.com/Starcraft426/TowerDefense/releases")
         htmlcontent = r.text
