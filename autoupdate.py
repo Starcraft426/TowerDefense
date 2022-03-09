@@ -41,7 +41,8 @@ class Updater:
                     if b[0] == "ADD":
                         if len(b) > 2:
                             r_file = requests.get(
-                                f"https://raw.githubusercontent.com/Starcraft426/TowerDefense/main/{b[3]}{b[1]}?raw=true")
+                                f"https://raw.githubusercontent.com/Starcraft426/TowerDefense/main/{b[3]}" +
+                                f"{b[1]}?raw=true")
                         else:
                             r_file = requests.get(
                                 f"https://raw.githubusercontent.com/Starcraft426/TowerDefense/main/{b[1]}?raw=true")
@@ -61,7 +62,8 @@ class Updater:
                     elif b[0] == "MODIFY":
                         if len(b) > 2:
                             r_file = requests.get(
-                                f"https://raw.githubusercontent.com/Starcraft426/TowerDefense/main/{b[3]}{b[1]}?raw=true")
+                                f"https://raw.githubusercontent.com/Starcraft426/TowerDefense/main/{b[3]}" +
+                                f"{b[1]}?raw=true")
                         else:
                             r_file = requests.get(
                                 f"https://raw.githubusercontent.com/Starcraft426/TowerDefense/main/{b[1]}?raw=true")
@@ -83,7 +85,8 @@ class Updater:
                         except:
                             print(f"file not found at {b[3]}")
                 print(f"Finished to update to {self.versions_to_update[a]}")
-            r_file = requests.get(f"https://raw.githubusercontent.com/Starcraft426/TowerDefense/main/autoupdate.py?raw=true")
+            r_file = requests.get("https://raw.githubusercontent.com/Starcraft426/TowerDefense/main/autoupdate.py" +
+                                  "?raw=true")
             filecontent = r_file.text
             if not filecontent == "404: Not Found":
                 file = open("autoupdate.py", "w")
@@ -91,6 +94,7 @@ class Updater:
                 file.close()
         else:
             print("The game is up to date")
-            
+
+
 if __name__ == "__main__":
     Updater()
