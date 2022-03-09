@@ -16,6 +16,7 @@ class Updater:
         self.versions = [a[0].split("VERSION ")[-1] for a in self.commands]
 
         self.versions_to_update = None
+        self.initial_path = os.getcwd()
 
         self.update()
 
@@ -59,7 +60,7 @@ class Updater:
                             file.writelines(filecontent.split("\n"))
                             file.close()
                             print(f"Sucessfully added {b[1]} at {b[3]}")
-                            os.chdir("./" * len(b[3].split("/")))
+                            os.chdir(self.initial_path)
                     elif b[0] == "MODIFY":
                         if len(b) > 2:
                             r_file = requests.get(
@@ -78,6 +79,7 @@ class Updater:
                                     file = open(b[1], "w")
                                     file.writelines(filecontent.split("\n"))
                                     file.close()
+                                    os.chdir(self.initial_path)
                             except:
                                 print(f"An error as occurred modifying {b[1]} at {b[3]}")
                     elif b[0] == "REMOVE":
@@ -99,3 +101,4 @@ class Updater:
 
 if __name__ == "__main__":
     Updater()
+
