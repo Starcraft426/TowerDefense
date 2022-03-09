@@ -4,7 +4,7 @@ import os
 
 class Updater:
     def __init__(self):
-        self.current_version = "v1.2-beta"
+        self.current_version = "v1.1-beta"
         print("")
         r = requests.get("https://github.com/Starcraft426/TowerDefense/releases")
         htmlcontent = r.text
@@ -51,14 +51,15 @@ class Updater:
                             print("Error, file not found, file had been probably deleted")
                         else:
                             if len(b) > 2:
-                                for path in b[3].split("/"):
+                                for path in b[3].split("/")[:-1]:
                                     if not os.path.exists(path):
                                         os.makedirs(path)
                                     os.chdir(path)
                             file = open(b[1], "w+")
                             file.writelines(filecontent.split("\n"))
                             file.close()
-                            os.chdir("." * len(b[3].split("/")) + "/")
+                            print(f"Sucessfully added {b[1]} at {b[3]}")
+                            os.chdir("./" * len(b[3].split("/")))
                     elif b[0] == "MODIFY":
                         if len(b) > 2:
                             r_file = requests.get(
