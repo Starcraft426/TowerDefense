@@ -4,7 +4,7 @@ import os
 
 class Updater:
     def __init__(self):
-        self.current_version = "v1.2-beta"
+        self.current_version = "v1.1-beta"
         print("")
         r = requests.get("https://github.com/Starcraft426/TowerDefense/releases")
         htmlcontent = r.text
@@ -84,12 +84,18 @@ class Updater:
                                 print(f"An error as occurred modifying {b[1]} at {b[3]}")
                     elif b[0] == "REMOVE":
                         try:
-                            if len(b)>2:
+                            if len(b) > 2:
                                 os.remove(f"{b[3]}{b[1]}")
+                                print(f"sucessfully removed {b[1]} at {b[3]}")
                             else:
                                 os.remove(f"{b[1]}")
+                                print(f"sucessfully removed {b[1]}")
+                            
                         except:
-                            print(f"file not found at {b[3]}")
+                            if len(b) > 2:
+                                print(f"file not found at {b[3]}")
+                            else:
+                                print("file not found on root")
                 print(f"Finished to update to {self.versions_to_update[a]}")
             r_file = requests.get("https://raw.githubusercontent.com/Starcraft426/TowerDefense/main/autoupdate.py" +
                                   "?raw=true")
