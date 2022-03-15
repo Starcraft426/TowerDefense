@@ -83,19 +83,33 @@ class Updater:
                             except:
                                 print(f"An error as occurred modifying {b[1]} at {b[3]}")
                     elif b[0] == "REMOVE":
-                        try:
-                            if len(b) > 2:
-                                os.remove(f"{b[3]}{b[1]}")
-                                print(f"sucessfully removed {b[1]} at {b[3]}")
+                        if len(b) > 2:
+                            if os.path.exists(f"{b[3]}{b[1]}"):
+                                if b[-1] == "/":
+                                    os.rmdir(f"{b[3]}{b[1]}")
+                                    print(f"sucessfully removed {b[1]} at {b[3]}")
+                                else:
+                                    os.remove(f"{b[3]}{b[1]}")
+                                    print(f"sucessfully removed {b[1]} at {b[3]}")
                             else:
-                                os.remove(f"{b[1]}")
-                                print(f"sucessfully removed {b[1]}")
-                            
-                        except:
-                            if len(b) > 2:
-                                print(f"{b[1]} not found at {b[3]}")
+                                if len(b) > 2:
+                                    print(f"{b[1]} not found at {b[3]}")
+                                else:
+                                    print(f"{b[1]} not found on root")
+                        else:
+                            if os.path.exists(f"{b[1]}"):
+                                if b[-1] == "/":
+                                    os.rmdir(f"{b[1]}")
+                                    print(f"sucessfully removed {b[1]}")
+                                else:
+                                    os.remove(f"{b[1]}")
+                                    print(f"sucessfully removed {b[1]}")
                             else:
-                                print(f"{b[1]} not found on root")
+                                if len(b) > 2:
+                                    print(f"{b[1]} not found at {b[3]}")
+                                else:
+                                    print(f"{b[1]} not found on root")
+
                 print(f"Finished to update to {self.versions_to_update[a]}")
             r_file = requests.get("https://raw.githubusercontent.com/Starcraft426/TowerDefense/main/autoupdate.py" +
                                   "?raw=true")
