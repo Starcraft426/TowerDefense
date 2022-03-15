@@ -93,9 +93,9 @@ class Updater:
                             
                         except:
                             if len(b) > 2:
-                                print(f"file not found at {b[3]}")
+                                print(f"{b[1]} not found at {b[3]}")
                             else:
-                                print("file not found on root")
+                                print(f"{b[1]} not found on root")
                 print(f"Finished to update to {self.versions_to_update[a]}")
             r_file = requests.get("https://raw.githubusercontent.com/Starcraft426/TowerDefense/main/autoupdate.py" +
                                   "?raw=true")
