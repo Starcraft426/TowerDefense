@@ -85,8 +85,8 @@ class Updater:
                     elif b[0] == "REMOVE":
                         if len(b) > 2:
                             if os.path.exists(f"{b[3]}{b[1]}"):
-                                if b[-1] == "/":
-                                    os.rmdir(f"{b[3]}{b[1]}")
+                                if b[1][-1] == "/":
+                                    os.rmdir(f"{b[3]}{b[1][:-1]}")
                                     print(f"sucessfully removed {b[1]} at {b[3]}")
                                 else:
                                     os.remove(f"{b[3]}{b[1]}")
@@ -98,8 +98,8 @@ class Updater:
                                     print(f"{b[1]} not found on root")
                         else:
                             if os.path.exists(f"{b[1]}"):
-                                if b[-1] == "/":
-                                    os.rmdir(f"{b[1]}")
+                                if b[1][-1] == "/":
+                                    os.rmdir(f"{b[1][:-1]}")
                                     print(f"sucessfully removed {b[1]}")
                                 else:
                                     os.remove(f"{b[1]}")
