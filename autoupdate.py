@@ -84,7 +84,10 @@ class Updater:
                                 print(f"An error as occurred modifying {b[1]} at {b[3]}")
                     elif b[0] == "REMOVE":
                         try:
-                            os.remove(f"{b[3]}{b[1]}")
+                            if len(b)>2:
+                                os.remove(f"{b[3]}{b[1]}")
+                            else:
+                                os.remove(f"{b[1]}")
                         except:
                             print(f"file not found at {b[3]}")
                 print(f"Finished to update to {self.versions_to_update[a]}")
@@ -101,4 +104,3 @@ class Updater:
 
 if __name__ == "__main__":
     Updater()
-
