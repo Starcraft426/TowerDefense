@@ -4,7 +4,10 @@ This is my tower defense. Fisrt it was a project for school but now i want to go
 
 ## How to play
 
-In order to play it just download the git, install the required modules for the game and lauch it with the main.py
+In order to play it just download the git.
+
+If you're using pycharm, download the venv<your_machine_os>.zip and unzip it on the main folder or install the required modules.
+Now you can launch the game by starting the main.py
 
 ## The commands to install the modules
 
@@ -26,6 +29,6 @@ pip install requests
 
 Just get the autoupdate.py file, modify the current_version to 
 ```
-self.current_version = "v1.1-beta"
+self.current_version = "v1.0"
 ```
 and run the file
