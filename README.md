@@ -9,11 +9,11 @@ In order to play it just download the git.
 If you're using pycharm, download the venv<your_machine_os>.zip and unzip it on the main folder or install the required modules.
 Now you can launch the game by starting the main.py
 
-## The venv files:
+## The venv folders:
 
-> [fichier venv windows zip](https://github.com/Starcraft426/TowerDefense/blob/main/venv%20windows.zip?raw=true)
+> [venv folder windows zip](https://github.com/Starcraft426/TowerDefense/blob/main/venv%20windows.zip?raw=true)
 
-> [fichier venv mac os zip](https://github.com/Starcraft426/TowerDefense/blob/main/venv%20mac%20os.zip?raw=true)
+> [venv folder mac os zip](https://github.com/Starcraft426/TowerDefense/blob/main/venv%20mac%20os.zip?raw=true)
 
 ## The commands to install the modules
 
