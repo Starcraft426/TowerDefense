@@ -6,18 +6,16 @@ This is my tower defense. Fisrt it was a project for school but now i want to go
 
 In order to play it just download the git.
 
-If you're using pycharm, download the venv<your_machine_os>.zip and unzip it on the main folder or install the required modules.
-Now you can launch the game by starting the main.py
-
-## The venv folders:
-
-> [venv folder windows zip](https://github.com/Starcraft426/TowerDefense/blob/main/venv%20windows.zip?raw=true)
-
-> [venv folder mac os zip](https://github.com/Starcraft426/TowerDefense/blob/main/venv%20mac%20os.zip?raw=true)
+Make sure you are able to run python files on your computer with the following modules:
+-pygame
+-pyscroll
+-pytmx
+-requests
+-threading
 
 ## The commands to install the modules
 
-Here are the commands to install the modules
+Here are the commands to install the modules with pip or pip3
 ```
 pip install pygame
 ```
@@ -30,8 +28,11 @@ pip install pyscroll
 ```
 pip install requests
 ```
+```
+pip install threading
+```
 
-## If you have an older version than v1.2-beta
+## If you have an older version than v2.0
 
 Just get the autoupdate.py file, modify the current_version to 
 ```
