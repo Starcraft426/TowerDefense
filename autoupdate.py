@@ -154,10 +154,5 @@ class Updater:
         else:
             print("The game is up to date")
 
-
-def raise_exeption():
-    raise TimedOut
-
-
 if __name__ == "__main__":
     Updater()
