@@ -6,12 +6,7 @@ This is my tower defense. Fisrt it was a project for school but now i want to go
 
 In order to play it just download the git.
 
-Make sure you are able to run python files on your computer with the following modules:
--pygame
--pyscroll
--pytmx
--requests
--threading
+Make sure you are able to run python files on your computer with the following modules: pygame, pyscroll, pytmx, requests and threading
 
 ## The commands to install the modules
 
