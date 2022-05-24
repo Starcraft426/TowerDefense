@@ -1,24 +1,56 @@
 import requests
 import os
+import threading
+
+
+class TimedOut(Exception):
+    pass
+
+
+class UpdateThread(threading.Thread):
+    def __init__(self, updater):
+        super().__init__()
+        self.updater = updater
+
+    def run(self):
+        self.updater.request = requests.get("https://github.com/Starcraft426/TowerDefense/releases")
 
 
 class Updater:
     def __init__(self):
         self.current_version = "v1.2-beta"
         print("")
-        r = requests.get("https://github.com/Starcraft426/TowerDefense/releases")
-        htmlcontent = r.text
+        self.skip = False
+        self.request = None
+        try:
+            timer = 0
+            thread = UpdateThread(self)
+            thread.start()
+            thread.join(20.0)
+            if self.request:
+                htmlcontent = self.request.text
+            else:
+                raise TimedOut
 
-        self.commands = htmlcontent.split("<pre>")[1:]
-        self.commands = [a.split("</pre>")[0] for a in self.commands]
-        self.commands = [a.split("\n") for a in self.commands]
-        self.commands.sort(reverse=False)
-        self.versions = [a[0].split("VERSION ")[-1] for a in self.commands]
+            self.commands = htmlcontent.split("<pre>")[1:]
+            self.commands = [a.split("</pre>")[0] for a in self.commands]
+            self.commands = [a.split("\n") for a in self.commands]
+            self.commands.sort(reverse=False)
+            self.versions = [a[0].split("VERSION ")[-1] for a in self.commands]
 
-        self.versions_to_update = None
-        self.initial_path = os.getcwd()
+            self.versions_to_update = None
+            self.initial_path = os.getcwd()
 
-        self.update()
+            self.update()
+        except requests.exceptions.ProxyError:
+            print("Cannot connect the proxy.")
+            print("Skipping...")
+        except requests.exceptions.SSLError:
+            print("An SSL error as occured whle connecting to the database")
+            print("Skipping...")
+        except TimedOut:
+            print("Maximum connection time reached.")
+            print("Skipping...")
 
     def update(self):
         try:
@@ -76,12 +108,12 @@ class Updater:
                             try:
                                 if len(b) > 2:
                                     os.chdir(b[3])
-                                    file = open(b[1], "w")
-                                    file.writelines(filecontent.split("\n"))
-                                    file.close()
-                                    os.chdir(self.initial_path)
-                            except:
-                                print(f"An error as occurred modifying {b[1]} at {b[3]}")
+                                file = open(b[1], "w")
+                                file.writelines(filecontent.split("\n"))
+                                file.close()
+                                os.chdir(self.initial_path)
+                            except Exception as e:
+                                print(f"An error as occurred modifying {b[1]} at {b[3]}: {e}")
                     elif b[0] == "REMOVE":
                         if len(b) > 2:
                             if os.path.exists(f"{b[3]}{b[1]}"):
@@ -118,8 +150,13 @@ class Updater:
                 file = open("autoupdate.py", "w")
                 file.writelines(filecontent.split("\n"))
                 file.close()
+            print("\n===== Finished to update the game =====\n")
         else:
             print("The game is up to date")
+
+
+def raise_exeption():
+    raise TimedOut
 
 
 if __name__ == "__main__":
